@@ -1,0 +1,20 @@
+[
+  {
+    "code": "BSE",
+    "benchmark": "Sensex",
+    "currency": "INR",
+    "timezone": "Asia/Kolkata"
+  },
+  {
+    "code": "NSE",
+    "benchmark": "Nifty 50",
+    "currency": "INR",
+    "timezone": "Asia/Kolkata"
+  },
+  {
+    "code": "NASDAQ",
+    "benchmark": "Nasdaq Composite",
+    "currency": "USD",
+    "timezone": "America/New_York"
+  }
+]

@@ -1,4 +1,5 @@
-from datetime import date
+from datetime import date, datetime
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -84,3 +85,43 @@ class AnalysisResponse(BaseModel):
     series: list[SeriesPoint]
     benchmark_series: list[SeriesPoint]
     summary: str
+
+
+class ImportFileStatus(BaseModel):
+    exchange: str
+    path: str
+    description: str
+    present: bool
+
+
+class MarketSyncStatus(BaseModel):
+    code: str
+    benchmark: str
+    currency: str
+    timezone: str
+    instrument_count: int
+    benchmark_count: int
+    cached_symbol_count: int
+    earliest_cached_date: date | None
+    latest_cached_date: date | None
+    last_sync_status: str | None
+    last_sync_completed_at: datetime | None
+    last_sync_message: str | None
+
+
+class RefreshStatusResponse(BaseModel):
+    database_path: str
+    imports_path: str
+    refresh_mode: str
+    auto_refresh_on_startup: bool
+    default_history_days: int
+    expected_imports: list[ImportFileStatus]
+    markets: list[MarketSyncStatus]
+
+
+class RefreshRunResponse(BaseModel):
+    message: str
+    exchange: str | None = None
+    query: str | None = None
+    days_back: int | None = None
+    details: dict[str, Any] = Field(default_factory=dict)

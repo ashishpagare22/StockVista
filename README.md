@@ -23,6 +23,19 @@ start-stockvista.bat
 
 This opens separate backend and frontend terminal windows for you.
 
+To refresh the local symbol/database catalog from the project root, run:
+
+```cmd
+refresh-stockvista-data.bat
+```
+
+If you have a raw NSE/BSE symbol file with mixed headers, normalize it first with:
+
+```cmd
+prepare-stockvista-import.bat NSE "C:\path\to\raw-file.csv"
+prepare-stockvista-import.bat BSE "C:\path\to\raw-file.tsv"
+```
+
 ### Frontend
 
 ```bash
@@ -48,10 +61,21 @@ uvicorn app.main:app --reload
 - `start-stockvista.bat`: opens both services in separate Command Prompt windows
 - `run-backend.bat`: starts the FastAPI backend
 - `run-frontend.bat`: starts the Next.js frontend
+- `refresh-stockvista-data.bat`: refreshes the local stock catalog and SQLite database
+- `prepare-stockvista-import.bat`: cleans raw NSE/BSE/NASDAQ symbol files into StockVista CSV format
 
 The helper scripts will create missing local setup pieces like the Python virtual environment and frontend dependencies when needed.
 
 If you hit a Next.js `ChunkLoadError` in development, use `start-stockvista.bat` or `run-frontend.bat`. They now reset the `.next` dev cache before starting the frontend.
+
+## Local Database Mode
+
+StockVista now keeps a local SQLite database under `backend/data/stockvista.db`.
+
+- symbol masters can be imported into `backend/data/imports/`
+- Nasdaq can bootstrap from the SEC ticker/exchange file
+- historical price data is cached on demand when you analyze a stock
+- the cache can be refreshed from the UI or with `python -m app.sync`
 
 ### Example API Call
 

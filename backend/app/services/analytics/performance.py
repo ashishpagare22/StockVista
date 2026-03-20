@@ -129,6 +129,7 @@ def build_analysis_response(
     query: str,
     stock: dict[str, object],
     history: list[dict[str, object]],
+    indicator_history: list[dict[str, object]] | None,
     benchmark_series: list[SeriesPoint],
     corporate_actions,
     start_date,
@@ -138,7 +139,7 @@ def build_analysis_response(
         raise ValueError("No price history available for the selected range.")
 
     market = get_market_descriptor(exchange)
-    closes = _closing_values(history)
+    closes = _closing_values(indicator_history or history)
     returns = calculate_return_metrics(history)
     benchmark_return = calculate_benchmark_return(benchmark_series)
     relative_performance = round(returns.percent_return - benchmark_return, 2)

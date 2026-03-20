@@ -13,6 +13,14 @@ export type QueryWindow = {
   end_date: string;
 };
 
+export type StockSearchResult = {
+  symbol: string;
+  name: string;
+  exchange: MarketCode;
+  sector: string;
+  currency: string;
+};
+
 export type PriceSnapshot = {
   as_of: string;
   open: number;
@@ -79,4 +87,44 @@ export type AnalysisFormValues = {
   query: string;
   startDate: string;
   endDate: string;
+};
+
+export type ImportFileStatus = {
+  exchange: string;
+  path: string;
+  description: string;
+  present: boolean;
+};
+
+export type MarketSyncStatus = {
+  code: MarketCode;
+  benchmark: string;
+  currency: string;
+  timezone: string;
+  instrument_count: number;
+  benchmark_count: number;
+  cached_symbol_count: number;
+  earliest_cached_date: string | null;
+  latest_cached_date: string | null;
+  last_sync_status: string | null;
+  last_sync_completed_at: string | null;
+  last_sync_message: string | null;
+};
+
+export type RefreshStatusResponse = {
+  database_path: string;
+  imports_path: string;
+  refresh_mode: string;
+  auto_refresh_on_startup: boolean;
+  default_history_days: number;
+  expected_imports: ImportFileStatus[];
+  markets: MarketSyncStatus[];
+};
+
+export type RefreshRunResponse = {
+  message: string;
+  exchange?: string | null;
+  query?: string | null;
+  days_back?: number | null;
+  details: Record<string, unknown>;
 };

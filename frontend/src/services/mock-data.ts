@@ -109,12 +109,18 @@ function stdDev(values: number[]): number {
 function resolveStock(market: MarketCode, query: string): StockSeed {
   const normalized = query.trim().toLowerCase();
   const pool = STOCKS[market];
-  return (
+  const match = (
     pool.find((stock) => stock.symbol.toLowerCase() === normalized) ||
     pool.find((stock) => stock.name.toLowerCase() === normalized) ||
-    pool.find((stock) => stock.symbol.toLowerCase().includes(normalized) || stock.name.toLowerCase().includes(normalized)) ||
-    pool[0]
+    pool.find((stock) => stock.symbol.toLowerCase().includes(normalized) || stock.name.toLowerCase().includes(normalized))
   );
+
+  if (!match) {
+    const supported = pool.map((stock) => stock.symbol).join(", ");
+    throw new Error(`Current demo data supports only these ${market} stocks: ${supported}.`);
+  }
+
+  return match;
 }
 
 function buildSeries(basePrice: number, drift: number, volatility: number, dates: string[]) {

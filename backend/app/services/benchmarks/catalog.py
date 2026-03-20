@@ -10,6 +10,8 @@ from app.utils.date_utils import iter_business_days
 MARKET_METADATA = {
     "BSE": {
         "benchmark": "Sensex",
+        "benchmark_symbol": "SENSEX",
+        "benchmark_yahoo_symbol": "^BSESN",
         "currency": "INR",
         "timezone": "Asia/Kolkata",
         "base_price": 73500.0,
@@ -18,6 +20,8 @@ MARKET_METADATA = {
     },
     "NSE": {
         "benchmark": "Nifty 50",
+        "benchmark_symbol": "NIFTY50",
+        "benchmark_yahoo_symbol": "^NSEI",
         "currency": "INR",
         "timezone": "Asia/Kolkata",
         "base_price": 22250.0,
@@ -26,6 +30,8 @@ MARKET_METADATA = {
     },
     "NASDAQ": {
         "benchmark": "Nasdaq Composite",
+        "benchmark_symbol": "NASDAQCOMP",
+        "benchmark_yahoo_symbol": "^IXIC",
         "currency": "USD",
         "timezone": "America/New_York",
         "base_price": 18300.0,

@@ -96,3 +96,4 @@ curl "http://127.0.0.1:8000/analysis?exchange=NSE&query=Reliance&start_date=2026
 2. Add persistent symbol caching and benchmark history storage
 3. Add authentication, watchlists, and export features
 // testing my git workflow
+This line was changed on branch-b

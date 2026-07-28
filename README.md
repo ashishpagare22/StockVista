@@ -1,4 +1,3 @@
-# StockVista
 
 StockVista is a multi-market stock performance analysis starter project focused on `BSE`, `NSE`, and `NASDAQ`.
 
@@ -97,3 +96,4 @@ curl "http://127.0.0.1:8000/analysis?exchange=NSE&query=Reliance&start_date=2026
 3. Add authentication, watchlists, and export features
 // testing my git workflow
 This line was changed on branch-a
+This line was changed on branch-b
